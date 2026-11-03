@@ -68,4 +68,18 @@ playwright-cli open http://localhost:3000
 With `playwright-cli`: visit every route, screenshot at 1440×900 and 390×844, click nav links,
 buttons and forms, and read console errors. View the screenshots and fix overflow, spacing,
 contrast and broken images. Then run `web-design-guidelines` on `src/` and fix the findings.
+Then check SEO and speed with Lighthouse on the production build (home + every page, mobile and desktop):
+
+```bash
+npx lighthouse http://localhost:3000/ --form-factor=mobile --quiet --chrome-flags="--headless" --output=json --output-path=./.lighthouse/home-mobile.json
+npx lighthouse http://localhost:3000/ --preset=desktop --quiet --chrome-flags="--headless" --output=json --output-path=./.lighthouse/home-desktop.json
+```
+
+Targets (from `danish-teachings`): Performance ≥ 95, Accessibility ≥ 95, Best Practices ≥ 95,
+SEO = 100, LCP < 2.0s, CLS < 0.05. Also check the `next build` output: first-load JS per route
+under 120 KB. If any target is missed, fix the cause (image sizes, client components, fonts,
+third-party scripts) and re-run. Put the final scores in the report to Danish.
+Validate structured data JSON-LD parses, and that `/sitemap.xml` and `/robots.txt` load.
+Add `.lighthouse/` to `.gitignore`.
+
 Re-run `npm run build`. Only then continue to `deploy-demo`.
