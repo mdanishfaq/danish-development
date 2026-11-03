@@ -26,7 +26,21 @@ GitHub repo (brief, content, images)
 ```bash
 /plugin marketplace add mdanishfaq/danish-development
 /plugin install danish-development@danish-development
+/plugin install taste-skill@danish-development
+/plugin install web-design-guidelines@danish-development
+/plugin install playwright-cli@danish-development
 ```
+
+Then once on your computer: `npm install -g @playwright/cli@latest`
+
+### Included plugins
+
+| Plugin | What the agent uses it for | Source |
+|---|---|---|
+| taste-skill | Art direction, no generic "AI-made" look, design inspector | [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) (MIT) |
+| web-design-guidelines | UI/UX/accessibility review before delivery | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) |
+| playwright-cli | Browser testing and screenshots | [microsoft/playwright-cli](https://github.com/microsoft/playwright-cli) (Apache-2.0) |
+| design-references (built in) | Brand-style DESIGN.md references | [VoltAgent/awesome-design-md](https://github.com/VoltAgent/awesome-design-md) (MIT) |
 
 ### Claude Cowork
 
@@ -76,6 +90,7 @@ skills/
   site-brief/          reads the repo, writes SITE_BRIEF.md
   build-nextjs-site/   builds the site
   deploy-demo/         demo link
+  design-references/   awesome-design-md brand references
 commands/              /build-site, /teach
 templates/SITE_BRIEF.md
 .mcp.json              Playwright MCP for screenshots/testing
