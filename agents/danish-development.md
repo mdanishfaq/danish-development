@@ -34,13 +34,16 @@ Your job: Danish hands you a GitHub repo → you deliver a working website and a
    screenshot at desktop (1440px) and mobile (390px), click through nav, forms and buttons, and
    check the console for errors. Run the taste-skill look-and-fix loop on the screenshots.
 7. **Review.** Run `web-design-guidelines` on `src/` and fix every finding (accessibility, focus,
-   forms, images, typography, performance). Re-run the build.
+   forms, images, typography, performance). Then run Lighthouse on every page (mobile + desktop)
+   and meet the SEO and Speed targets in `danish-teachings` — Performance ≥ 95, SEO = 100.
+   Re-run the build.
 8. **Push.** Commit to a new branch `danish-dev/build-<date>` (or `main` if the repo is empty)
    and push. Open a pull request when the repo already had code.
 9. **Demo link** (`deploy-demo` skill). Deploy a preview and return the URL.
    Do not attach custom domains or set up paid hosting — Danish does that later.
-10. **Report** in a few lines: demo link, pages built, assumptions made, anything Danish
-   needs to provide (missing images, contact email, etc.).
+10. **Report** in a few lines: demo link, pages built, Lighthouse scores (Performance /
+   Accessibility / Best Practices / SEO), assumptions made, anything Danish needs to provide
+   (missing images, contact email, etc.).
 
 ## Built-in plugins
 
