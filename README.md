@@ -26,21 +26,20 @@ GitHub repo (brief, content, images)
 ```bash
 /plugin marketplace add mdanishfaq/danish-development
 /plugin install danish-development@danish-development
-/plugin install taste-skill@danish-development
-/plugin install web-design-guidelines@danish-development
-/plugin install playwright-cli@danish-development
 ```
 
-Then once on your computer: `npm install -g @playwright/cli@latest`
+That one install includes everything below — no separate plugins to install.
 
-### Included plugins
+### Built-in plugins
 
-| Plugin | What the agent uses it for | Source |
+| Skill | What the agent uses it for | Original source |
 |---|---|---|
 | taste-skill | Art direction, no generic "AI-made" look, design inspector | [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) (MIT) |
-| web-design-guidelines | UI/UX/accessibility review before delivery | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) |
+| web-design-guidelines | UI/UX/accessibility review before delivery | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) (MIT) |
 | playwright-cli | Browser testing and screenshots | [microsoft/playwright-cli](https://github.com/microsoft/playwright-cli) (Apache-2.0) |
-| design-references (built in) | Brand-style DESIGN.md references | [VoltAgent/awesome-design-md](https://github.com/VoltAgent/awesome-design-md) (MIT) |
+| design-references | Brand-style DESIGN.md references | [VoltAgent/awesome-design-md](https://github.com/VoltAgent/awesome-design-md) (MIT) |
+
+Bundled third-party skills keep their original LICENSE file in their folder.
 
 ### Claude Cowork
 
@@ -91,6 +90,9 @@ skills/
   build-nextjs-site/   builds the site
   deploy-demo/         demo link
   design-references/   awesome-design-md brand references
+  taste-skill/         art direction (bundled, MIT)
+  web-design-guidelines/ UI review (bundled, MIT)
+  playwright-cli/      browser testing (bundled, Apache-2.0)
 commands/              /build-site, /teach
 templates/SITE_BRIEF.md
 .mcp.json              Playwright MCP for screenshots/testing
