@@ -1,11 +1,17 @@
 {
   "name": "danish-development",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Danish Development — a web dev agent that reads a GitHub repo (brief, content, images), builds the website in Next.js + Tailwind to match the requested pages and layout, and returns a live demo link.",
   "author": {
     "name": "Danish",
     "email": "danish@diputech.com"
   },
-  "keywords": ["web-development", "nextjs", "tailwind", "website-builder", "agent"],
+  "keywords": [
+    "web-development",
+    "nextjs",
+    "tailwind",
+    "website-builder",
+    "agent"
+  ],
   "license": "MIT"
 }
