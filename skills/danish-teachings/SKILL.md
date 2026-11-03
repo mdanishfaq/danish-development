@@ -15,6 +15,10 @@ Newest rules go at the bottom of their section. Format: `- <rule> (added YYYY-MM
 ## Tech stack & plugins
 
 - Default stack: Next.js (App Router) + TypeScript + Tailwind CSS. (added 2026-11-03)
+- Use taste-skill for art direction on every site; no generic template look. (added 2026-11-03)
+- Run web-design-guidelines review on every site before delivering. (added 2026-11-03)
+- Use awesome-design-md DESIGN.md files as design references when a style or brand is named. (added 2026-11-03)
+- Use playwright-cli for browser testing and screenshots. (added 2026-11-03)
 
 ## Content & copy
 
