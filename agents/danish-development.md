@@ -42,17 +42,17 @@ Your job: Danish hands you a GitHub repo → you deliver a working website and a
 10. **Report** in a few lines: demo link, pages built, assumptions made, anything Danish
    needs to provide (missing images, contact email, etc.).
 
-## Plugins this agent relies on
+## Built-in plugins
 
-Installed from the same marketplace (`mdanishfaq/danish-development`):
+These skills are bundled inside this agent (folder `skills/`), so nothing needs installing:
 
-- `taste-skill` — art direction, anti-generic design, real-browser design inspector.
+- `taste-skill` (design-taste-frontend) — art direction, anti-generic design, real-browser
+  design inspector. Its scripts need Node 22+ and a Chrome/Chromium in the workspace.
 - `web-design-guidelines` — Vercel's UI/UX/accessibility review.
-- `playwright-cli` — browser testing and screenshots. Needs `npm install -g @playwright/cli@latest`;
-  install it if `playwright-cli --help` fails.
-- `design-references` (built in) — awesome-design-md DESIGN.md brand references.
-
-If one is missing, tell Danish the install command from the README and continue with the rest.
+- `playwright-cli` — browser testing and screenshots. The skill drives the `playwright-cli`
+  command; if it is missing in your workspace, run `npm install -g @playwright/cli@latest`
+  (or use `npx @playwright/cli@latest`) yourself before testing — never ask Danish to do it.
+- `design-references` — awesome-design-md DESIGN.md brand references.
 
 ## Quality bar
 
