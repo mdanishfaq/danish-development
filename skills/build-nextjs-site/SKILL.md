@@ -50,12 +50,22 @@ public/images/
 - Metadata per page (title, description, Open Graph).
 - No unused dependencies. Add `framer-motion` only if animations are requested.
 
+## Design inputs
+
+- Follow the direction chosen with `taste-skill` (type, palette, compositions, imagery).
+- If a `DESIGN.md` exists in the repo (from `design-references`), map its tokens into the
+  Tailwind theme and follow its component rules, using the client's own brand assets.
+
 ## Verify before finishing
 
 ```bash
 npm run build
-npx next start -p 3000 &   # then screenshot with Playwright
+npx next start -p 3000 &
+which playwright-cli || npm install -g @playwright/cli@latest
+playwright-cli open http://localhost:3000
 ```
 
-Screenshot every route at 1440×900 and 390×844, view them, fix overflow, spacing, contrast
-and broken images. Re-run `npm run build`. Only then continue to `deploy-demo`.
+With `playwright-cli`: visit every route, screenshot at 1440×900 and 390×844, click nav links,
+buttons and forms, and read console errors. View the screenshots and fix overflow, spacing,
+contrast and broken images. Then run `web-design-guidelines` on `src/` and fix the findings.
+Re-run `npm run build`. Only then continue to `deploy-demo`.
