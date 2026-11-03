@@ -4,53 +4,12 @@
     "name": "Danish",
     "email": "danish@diputech.com"
   },
-  "description": "Danish Development web dev agent + the design and testing plugins it uses",
+  "description": "Danish Development web dev agent marketplace",
   "plugins": [
     {
       "name": "danish-development",
       "source": "./",
       "description": "Web dev agent: give it a GitHub repo, get a finished Next.js website and a demo link."
-    },
-    {
-      "name": "taste-skill",
-      "description": "tasteskill v2 by Leonxlnx: art direction for websites with researched directions, real pictures and a real-browser inspector (MIT).",
-      "source": {
-        "source": "github",
-        "repo": "Leonxlnx/taste-skill"
-      },
-      "strict": false,
-      "skills": [
-        "./skills/taste-skill"
-      ],
-      "homepage": "https://github.com/Leonxlnx/taste-skill",
-      "license": "MIT"
-    },
-    {
-      "name": "web-design-guidelines",
-      "description": "Vercel's Web Interface Guidelines review skill: audits UI code for accessibility, UX and best practices.",
-      "source": {
-        "source": "github",
-        "repo": "vercel-labs/agent-skills"
-      },
-      "strict": false,
-      "skills": [
-        "./skills/web-design-guidelines"
-      ],
-      "homepage": "https://github.com/vercel-labs/agent-skills"
-    },
-    {
-      "name": "playwright-cli",
-      "description": "Microsoft Playwright CLI skill: browser automation, screenshots and testing from the command line (needs: npm install -g @playwright/cli@latest).",
-      "source": {
-        "source": "github",
-        "repo": "microsoft/playwright-cli"
-      },
-      "strict": false,
-      "skills": [
-        "./skills/playwright-cli"
-      ],
-      "homepage": "https://github.com/microsoft/playwright-cli",
-      "license": "Apache-2.0"
     }
   ]
 }
