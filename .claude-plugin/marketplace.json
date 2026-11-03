@@ -1,0 +1,1 @@
+{"name":"danish-development","owner":{"name":"Danish","email":"danish@diputech.com"},"description":"Danish Development web dev agent marketplace","plugins":[{"name":"danish-development","source":"./","description":"Web dev agent: give it a GitHub repo, get a finished Next.js website and a demo link."}]}
