@@ -105,8 +105,12 @@ export function PageHero({ eyebrow, title, accent, lede, photo, art, crumbs, chi
           {children && <div className="mx-blur-up mt-10 flex flex-wrap gap-3" style={{ "--i": 6 } as CSSProperties}>{children}</div>}
         </div>
         {(photo || art) && (
-          <div className="relative aspect-[21/9] max-h-[34rem] w-full overflow-hidden rounded-blob sm:aspect-[16/9] lg:aspect-[4/5] lg:justify-self-end" style={{ animation: "mx-mask-up 1.2s var(--ease-dramatic) .2s both" }}>
-            {photo ? <Photo k={photo} alt="" sizes="(min-width:1024px) 40vw, 90vw" priority /> : <Art k={art!} alt="" sizes="(min-width:1024px) 40vw, 90vw" priority />}
+          // Desktop/tablet only: on phones the headline is the LCP and no hero image is downloaded at all.
+          <div className="relative hidden aspect-[4/5] max-h-[34rem] w-full overflow-hidden rounded-blob lg:block lg:justify-self-end" style={{ animation: "mx-mask-up 1.2s var(--ease-dramatic) .2s both" }}>
+            <picture className="block h-full w-full">
+              <source media="(max-width: 1023px)" srcSet="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
+              {photo ? <Photo k={photo} alt="" sizes="40vw" priority /> : <Art k={art!} alt="" sizes="40vw" priority />}
+            </picture>
             <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent" />
           </div>
         )}
