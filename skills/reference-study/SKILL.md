@@ -60,7 +60,7 @@ Keep each `javascript_tool` call small; one heavy call times out.
 For each site:
 
 - One line on its idea and stack (library, versions if visible, JS weight).
-- **Look:** background, ink, accents, typefaces, radius, density.
+- **Look:** only if Danish asked for the look. Usually he wants the MOTION, so skip styling and add the extracted animations to `motion-library` (data + recipes).
 - **Sections table:** scroll position · section · what moves · how it's built.
 - **Timing system:** the top easings and durations with counts, plus stagger ranges.
 - **Effects you could use:** `- [ ]` tick-boxes, each in Danish's words, saying where it

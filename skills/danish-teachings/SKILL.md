@@ -10,8 +10,8 @@ Newest rules go at the bottom of their section. Format: `- <rule> (added YYYY-MM
 
 ## Design
 
-- Motion matters: Danish likes the animation quality of animejs.com, motion.dev, kokonutui.com, bklit.com and v0.app (scroll stories, pinned chapters, live demos in bento cells, charts that draw in, crisp springs). Study references fully with `reference-study` before designing. (added 2026-11-19)
-- When Danish's references conflict with taste-skill house rules, Danish's references win. (added 2026-11-19)
+- Motion matters: Danish likes how animejs.com, motion.dev, kokonutui.com, bklit.com and v0.app **move**, NOT how they look. Use their animations (the `motion-library` skill) on every site; never copy their plain white or black, minimal, technical styling. (added 2026-11-19, clarified 2026-11-19)
+- Design must not be boring or dull. Go for bold, rich, eye-catching design (strong colour, big expressive type, real artwork and imagery, depth). Plain minimal "developer-tool" looks are out unless Danish asks. Where taste-skill's restraint rules (no gradients, no glow, no shadows) block that, Danish's taste wins. (added 2026-11-19)
 
 ## Tech stack & plugins
 

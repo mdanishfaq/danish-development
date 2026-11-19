@@ -54,6 +54,13 @@ for (const vp of VIEWPORTS) {
       overflow: document.documentElement.scrollWidth - innerWidth,
       brokenImgs: [...document.images].filter(i => i.complete && i.naturalWidth === 0).map(i => i.currentSrc || i.src).slice(0, 5),
       hiddenAfterScroll: [...document.querySelectorAll('h1,h2,h3,p,li,figure,svg')].filter(e => { if (e.closest('[hidden],[aria-hidden="true"]')) return false; let o = 1; for (let n = e; n && n.nodeType === 1; n = n.parentElement) o *= +getComputedStyle(n).opacity; return (e.tagName === 'svg' || e.textContent.trim()) && (o < 0.5 || getComputedStyle(e).visibility === 'hidden'); }).length,
+      invisibleText: [...document.querySelectorAll('h1,h2,h3,p,a,button,li,span')].filter(e => {
+        if (e.closest('[aria-hidden="true"]') && !e.closest('[aria-label]')) return false;
+        if (![...e.childNodes].some(n => n.nodeType === 3 && n.textContent.trim())) return false;
+        const cs = getComputedStyle(e); const transparent = /rgba\(.*,\s*0\)$|transparent/.test(cs.color);
+        const clipped = (cs.backgroundClip === 'text' || cs.webkitBackgroundClip === 'text') && cs.backgroundImage !== 'none';
+        return transparent && !clipped;
+      }).map(e => e.textContent.trim().slice(0, 30)).slice(0, 5),
       tapTargetsSmall: matchMedia('(pointer: coarse)').matches ? [...document.querySelectorAll('a,button')].filter(e => { const r = e.getBoundingClientRect(); return r.width && r.height && (r.width < 24 || r.height < 24); }).length : 0,
     }));
     const slug = (route === '/' ? 'home' : route.replace(/^\//, '').replace(/\//g, '_')) + '-' + vp.name;
@@ -65,6 +72,7 @@ for (const vp of VIEWPORTS) {
     if (facts.overflow > 1) issues.push(['FAIL', `horizontal overflow ${facts.overflow}px`]);
     if (facts.brokenImgs.length) issues.push(['FAIL', `broken images: ${facts.brokenImgs.join(', ')}`]);
     if (facts.hiddenAfterScroll) issues.push(['FAIL', `${facts.hiddenAfterScroll} text elements still invisible after scrolling (animation never revealed them)`]);
+    if (facts.invisibleText.length) issues.push(['FAIL', `invisible text (transparent colour, no clipped background): ${facts.invisibleText.join(' | ')}`]);
     if (facts.tapTargetsSmall) issues.push(['WARN', `${facts.tapTargetsSmall} tap targets smaller than 24px`]);
     await Promise.all(bodies);
     const kb = Math.round(jsBytes / 1024);

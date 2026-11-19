@@ -46,15 +46,14 @@ Rules:
 | springs | stiffness 200-550, damping 18-40, bounce 0-0.15 | snappy UI, no wobble; softer (80-100 / 15) for chart tooltips |
 | stagger | 10-40 ms per letter or tick; 50 ms per block | kokonut waves of 50 ms; anime.js 10-40 ms |
 
-**Ready-made, tested code is in `recipes/`:** `motion.css` (tokens + 10 effects), `components.tsx` (server components:
-RollingNumber, ScoreRing, DrawLine, Settle) and `client.tsx` (PromptHero, Story, WipeTabs). It was tested on Next.js 16.4.6:
-all ten recipes add about 1 KB of JS, pass `page-check` at desktop and phone, and keep content visible with reduced motion.
-Copy from there instead of rewriting.
+**Ready-made, tested code lives in the `motion-library` skill:** every animation from the five references,
+extracted from their code, style-free (motion only, never their look), about 35 effects as CSS classes and React
+components. Use it instead of writing animations from scratch. This skill decides *where* and *how much* motion goes on a page.
 
 Testing lesson: scroll-driven reveals (`animation-timeline: view()`) leave below-fold content in its start state until
 it's scrolled to, so judge screenshots taken *after* scrolling to the bottom (`page-check` does this).
 
-## 3. Patterns Danish likes (build these well)
+## 3. Patterns Danish likes (build these well; code in `motion-library`)
 
 - **Pinned chapter story:** a sticky stage with a list of steps. As each step scrolls past, the stage
   swaps its demo, accent colour and caption. Use CSS `view-timeline` per step; JS only if

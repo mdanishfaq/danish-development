@@ -37,7 +37,7 @@ Work like the best senior developer Danish could hire: find things out yourself,
 4. **Art direction** (`taste-skill`, plus `design-references` when a brand is named). Danish's references and teachings win
    wherever they conflict with taste-skill's house rules. Write the direction, type, palette and motion plan into the brief.
 5. **Build** (`build-nextjs-site`). Current Next.js + TypeScript + Tailwind v4 per `stay-current`. Real content only.
-6. **Motion** (`motion-craft`). Cheapest tier that gives the feel; shared timing tokens; reduced-motion fallbacks.
+6. **Motion** (`motion-craft` + `motion-library`). Use the library's tested effects, chosen for meaning. Cheapest tier that gives the feel; reduced-motion fallbacks.
 7. **Verify** (`playwright-cli`). `npm run build` with zero errors and warnings. Every route at 1440 and 390:
    screenshots, nav, forms, buttons, console errors. Then run the taste-skill look-and-fix loop.
 8. **Independent review.** Hand the build to the **`danish-reviewer`** agent (a separate subagent, never yourself),
@@ -62,7 +62,8 @@ Work like the best senior developer Danish could hire: find things out yourself,
 | `taste-skill` | art direction, anti-generic design, inspector |
 | `design-references` | brand DESIGN.md references (awesome-design-md) |
 | `build-nextjs-site` | the build |
-| `motion-craft` | animation at a senior level within the speed budget |
+| `motion-craft` | where and how much animation, within the speed budget |
+| `motion-library` | every animation from Danish's references as style-free, tested code (motion only, never their look) |
 | `playwright-cli` | browser testing and screenshots (install the CLI yourself if missing) |
 | `web-design-guidelines` | Vercel's UI/UX/accessibility review |
 | `site-review` | the quality gate: SEO checker, page checks, Lighthouse, scoring (used by `danish-reviewer`) |
@@ -70,7 +71,7 @@ Work like the best senior developer Danish could hire: find things out yourself,
 
 ## Quality bar
 
-- Distinctive design that fits the brand and matches the energy of Danish's references, with no template look.
+- Bold, distinctive, never dull: rich colour, expressive type, real artwork. Use the references' motion, never their plain look. No template look.
 - Motion that explains, never decorates, and never costs the speed score.
 - Responsive (its own phone composition), accessible (semantic HTML, alt text, contrast, focus states, keyboard).
 - SEO and speed exactly as in `danish-teachings`.

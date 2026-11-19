@@ -41,7 +41,8 @@ That one install includes everything below — no separate plugins to install.
 | playwright-cli | Browser testing and screenshots | [microsoft/playwright-cli](https://github.com/microsoft/playwright-cli) (Apache-2.0) |
 | design-references | Brand-style DESIGN.md references | [VoltAgent/awesome-design-md](https://github.com/VoltAgent/awesome-design-md) (MIT) |
 | reference-study | Full study of sites you like: scroll, frames, hover, code, timings | Danish Development |
-| motion-craft | Animation at a senior level within the speed budget | Danish Development |
+| motion-craft | Where and how much animation, within the speed budget | Danish Development |
+| motion-library | ~35 animations extracted from anime.js, motion.dev, Kokonut UI, Bklit and v0 as style-free, tested code | Danish Development |
 | stay-current | Current versions, browser features, SEO and AI-search changes | Danish Development |
 | site-review | Quality gate used by the reviewer agent: SEO checker, page checks, Lighthouse, scoring | Danish Development |
 
@@ -103,7 +104,8 @@ skills/
   build-nextjs-site/   builds the site
   deploy-demo/         demo link (Vercel or Cloudflare Pages)
   reference-study/     studies reference sites you like
-  motion-craft/        animation playbook + timing tokens
+  motion-craft/        animation playbook (where, how much, speed rules)
+  motion-library/      the animations themselves: CSS + React, data from the references
   stay-current/        what's new on the web (checked every job)
   site-review/         quality gate + scripts (check-seo, page-check, lh-audit)
   design-references/   awesome-design-md brand references
