@@ -1,6 +1,6 @@
 ---
 name: motion-craft
-description: How Danish Development builds animation at a senior level - scroll stories, pinned chapters, text reveals, springs, page transitions - while still passing Danish's speed rules (Performance 95+, first-load JS under 120 KB, INP under 200 ms). Use on every site with animation, after reference-study and taste-skill have set the direction.
+description: How Danish Development builds animation at a senior level - scroll stories, pinned chapters, text reveals, springs, page transitions - while still passing Danish's speed rules (Performance 95+, JS within budget, INP under 200 ms). Use on every site with animation, after reference-study and taste-skill have set the direction.
 ---
 
 # Motion craft
@@ -72,4 +72,4 @@ Put these in the Tailwind v4 `@theme` block as CSS variables so every component 
 - INP < 200 ms: no heavy work in scroll or pointer handlers; use `requestAnimationFrame` or CSS.
 - Pause loops and canvases off-screen and when the tab is hidden.
 - Run Lighthouse mobile and desktop after motion is added. If Performance drops below 95, move the effect down a tier.
-- Check `next build` first-load JS per route stays under 120 KB.
+- Check the JS budget with `site-review/scripts/page-check.mjs` (framework baseline + 50 KB gzip per page).

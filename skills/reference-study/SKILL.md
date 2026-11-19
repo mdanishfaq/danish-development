@@ -51,7 +51,7 @@ Keep each `javascript_tool` call small; one heavy call times out.
    `prefers-reduced-motion` blocks.
 4. **Live animations:** `document.getAnimations()` returns duration, easing and target for CSS/WAAPI motion.
 5. **Weight:** total JS transferred (`performance.getEntriesByType('resource')`), and whether
-   the effect would fit Danish's 120 KB first-load budget.
+   the effect would fit Danish's JS budget (framework baseline + 50 KB gzip).
 
 `scripts/probe.js` in this folder has these checks as small snippets you can paste one at a time.
 

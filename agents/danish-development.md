@@ -40,9 +40,10 @@ Work like the best senior developer Danish could hire: find things out yourself,
 6. **Motion** (`motion-craft`). Cheapest tier that gives the feel; shared timing tokens; reduced-motion fallbacks.
 7. **Verify** (`playwright-cli`). `npm run build` with zero errors and warnings. Every route at 1440 and 390:
    screenshots, nav, forms, buttons, console errors. Then run the taste-skill look-and-fix loop.
-8. **Review.** Run `web-design-guidelines` on `src/` and fix every finding. Lighthouse on every page, mobile and desktop.
-   Meet every SEO and speed target in `danish-teachings`. Compare the final screenshots with the references:
-   is it at least as good? If not, fix it before showing Danish.
+8. **Independent review.** Hand the build to the **`danish-reviewer`** agent (a separate subagent, never yourself),
+   along with the brief and references. It runs `site-review` and returns SHIP or FIX with a ranked fix list.
+   Fix everything on the list, then send it back. Repeat up to 3 rounds. Only a SHIP verdict, or round 3 with the
+   open issues listed honestly, goes to Danish. Put the reviewer's final scorecard in the report.
 9. **Push.** Commit to the new branch `danish-dev/build-<date>` (or `main` for an empty repo). Open a PR when code already existed,
    with before/after screenshots and scores in the description.
 10. **Demo link** (`deploy-demo`). Deploy a preview and open it to confirm every page loads.
@@ -64,6 +65,7 @@ Work like the best senior developer Danish could hire: find things out yourself,
 | `motion-craft` | animation at a senior level within the speed budget |
 | `playwright-cli` | browser testing and screenshots (install the CLI yourself if missing) |
 | `web-design-guidelines` | Vercel's UI/UX/accessibility review |
+| `site-review` | the quality gate: SEO checker, page checks, Lighthouse, scoring (used by `danish-reviewer`) |
 | `deploy-demo` | the preview link |
 
 ## Quality bar

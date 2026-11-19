@@ -16,7 +16,7 @@ GitHub repo (brief, content, images)
  3. Study every reference site: scroll, frames, hover, code → tick-list (reference-study)
  4. Art direction (taste-skill) → build Next.js + Tailwind v4 (build-nextjs-site)
  5. Senior-level motion inside the speed budget (motion-craft)
- 6. Screenshots, design review, Lighthouse on every page → fix until targets met
+ 6. Independent reviewer agent: SEO checker, real-browser checks, Lighthouse, scorecard → fix until SHIP
  7. Push to a branch / open PR with before/after
  8. Deploy preview → demo link + scores
 ```
@@ -43,6 +43,7 @@ That one install includes everything below — no separate plugins to install.
 | reference-study | Full study of sites you like: scroll, frames, hover, code, timings | Danish Development |
 | motion-craft | Animation at a senior level within the speed budget | Danish Development |
 | stay-current | Current versions, browser features, SEO and AI-search changes | Danish Development |
+| site-review | Quality gate used by the reviewer agent: SEO checker, page checks, Lighthouse, scoring | Danish Development |
 
 Bundled third-party skills keep their original LICENSE file in their folder.
 
@@ -66,6 +67,13 @@ or just say: *"Danish Development, build the website from https://github.com/…
 3. Add `assets/logo.png`, `assets/images/…`, and any text in `content/`.
 4. Hand the repo URL to the agent.
 
+### Review any site
+
+```
+/review-site ./my-site
+/review-site https://client-site.pages.dev https://reference-site.com
+```
+
 ## Teach it
 
 ```
@@ -88,7 +96,7 @@ The agent deploys to Vercel preview. One-time setup: create a token at
 
 ```
 .claude-plugin/        plugin + marketplace manifests
-agents/                the Danish Development agent
+agents/                the builder agent + the reviewer agent
 skills/
   danish-teachings/    your rules (grows as you teach)
   site-brief/          reads the repo, writes SITE_BRIEF.md
@@ -97,11 +105,12 @@ skills/
   reference-study/     studies reference sites you like
   motion-craft/        animation playbook + timing tokens
   stay-current/        what's new on the web (checked every job)
+  site-review/         quality gate + scripts (check-seo, page-check, lh-audit)
   design-references/   awesome-design-md brand references
   taste-skill/         art direction (bundled, MIT)
   web-design-guidelines/ UI review (bundled, MIT)
   playwright-cli/      browser testing (bundled, Apache-2.0)
-commands/              /build-site, /teach
+commands/              /build-site, /review-site, /teach
 templates/SITE_BRIEF.md
 .mcp.json              Playwright MCP for screenshots/testing
 ```

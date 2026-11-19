@@ -45,7 +45,8 @@ public/images/
 - Section order and layout exactly as the brief says.
 - Real content from the repo. If a piece is missing, write sensible placeholder copy that fits
   the business and mark it `// TODO: confirm with client` in `site.ts`.
-- Brand colors, type scale and motion tokens in Tailwind v4's `@theme { }` block in `globals.css` (no tailwind.config.js); fonts via `next/font/google`.
+- Brand colors, type scale and motion tokens in Tailwind v4's `@theme { }` block in `globals.css` (no tailwind.config.js).
+- Fonts: self-host with `npm i @fontsource-variable/<font>` + `next/font/local` (the `.woff2` in `node_modules/@fontsource-variable/<font>/files/`). `next/font/google` fails in sandboxes without access to Google Fonts. Replace create-next-app's default Geist import immediately.
 - Animation follows `motion-craft`: CSS and scroll-driven CSS first, `<ViewTransition>` for page changes, Motion (LazyMotion) or anime.js only for what CSS can't do.
 - `next/image` for all images, with `alt` text.
 - Mobile-first; sticky header with mobile menu; footer with contact and socials.
@@ -82,8 +83,8 @@ npx lighthouse http://localhost:3000/ --preset=desktop --quiet --chrome-flags="-
 ```
 
 Targets (from `danish-teachings`): Performance ≥ 95, Accessibility ≥ 95, Best Practices ≥ 95,
-SEO = 100, LCP < 2.0s, CLS < 0.05. Also check the `next build` output: first-load JS per route
-under 120 KB. If any target is missed, fix the cause (image sizes, client components, fonts,
+SEO = 100, LCP < 2.0s, CLS < 0.05. Next 16's build output no longer shows first-load JS, so measure it with `site-review/scripts/page-check.mjs`
+(budget: framework baseline + 50 KB gzip). If any target is missed, fix the cause (image sizes, client components, fonts,
 third-party scripts) and re-run. Put the final scores in the report to Danish.
 Validate structured data JSON-LD parses, and that `/sitemap.xml` and `/robots.txt` load.
 Add `.lighthouse/` to `.gitignore`.

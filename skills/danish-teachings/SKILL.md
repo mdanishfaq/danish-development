@@ -41,7 +41,7 @@ Newest rules go at the bottom of their section. Format: `- <rule> (added YYYY-MM
 - Static generation by default; React Server Components; `"use client"` only for small interactive parts. (added 2026-11-03)
 - Images via `next/image` (AVIF/WebP, correct `sizes`), hero image `priority`, everything below the fold lazy-loaded; no image larger than needed. (added 2026-11-03)
 - Fonts via `next/font` (self-hosted, `display: swap`), max 2 families. (added 2026-11-03)
-- First-load JS per page under 120 KB; no heavy libraries (no jQuery, no big UI kits, no full icon packs — import single icons); no carousels/sliders unless asked. (added 2026-11-03)
+- JS budget: the site's own JS adds at most 50 KB (gzip) on top of the Next.js framework baseline, so about 190 KB total per page on Next 16. (Changed 2026-11-19: the old "under 120 KB" rule can't be met, because a blank Next.js 16 + React 19.3 app already ships about 138 KB gzip.) No heavy libraries (no jQuery, no big UI kits, no full icon packs — import single icons); no carousels/sliders unless asked. (added 2026-11-03, budget updated 2026-11-19)
 - Third-party scripts (analytics, chat, maps) load with `next/script` `lazyOnload` or on interaction; Google Maps as a static image/link that loads the embed on click. (added 2026-11-03)
 - Reserve space for images/embeds (width/height or aspect-ratio) so nothing shifts while loading. (added 2026-11-03)
 
