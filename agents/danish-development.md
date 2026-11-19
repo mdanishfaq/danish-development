@@ -40,6 +40,9 @@ Work like the best senior developer Danish could hire: find things out yourself,
 6. **Motion** (`motion-craft` + `motion-library`). Use the library's tested effects, chosen for meaning. Cheapest tier that gives the feel; reduced-motion fallbacks.
 7. **Verify** (`playwright-cli`). `npm run build` with zero errors and warnings. Every route at 1440 and 390:
    screenshots, nav, forms, buttons, console errors. Then run the taste-skill look-and-fix loop.
+   **SPEED GATE (top priority, never skip):** run Lighthouse (`site-review/scripts/lh-audit.mjs`) on EVERY route,
+   mobile and desktop. Perf/A11y/BP ≥ 95, SEO 100, LCP < 2.0s, CLS < 0.05, TBT < 150ms. Fix and re-run until it
+   passes. Nothing is shown to Danish before this passes, and the score table goes in every report.
 8. **Independent review.** Hand the build to the **`danish-reviewer`** agent (a separate subagent, never yourself),
    along with the brief and references. It runs `site-review` and returns SHIP or FIX with a ranked fix list.
    Fix everything on the list, then send it back. Repeat up to 3 rounds. Only a SHIP verdict, or round 3 with the

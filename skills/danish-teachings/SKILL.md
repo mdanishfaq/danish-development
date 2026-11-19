@@ -34,6 +34,15 @@ Newest rules go at the bottom of their section. Format: `- <rule> (added YYYY-MM
 - Lighthouse SEO score must be 100. (added 2026-11-03)
 - AI search: allow AI search crawlers (OAI-SearchBot, ChatGPT-User, PerplexityBot, Claude-SearchBot, Claude-User) in robots; write answer-first copy on service pages; set up Google Business Profile details in LocalBusiness schema. (added 2026-11-19)
 
+## TOP PRIORITY: speed gate before showing anything (added 2026-11-19)
+
+- **Never show Danish a site, demo or link until Lighthouse has run on EVERY page, mobile AND desktop, and every target in "Speed" below is met.** No exceptions for demos, "quick" builds or deadlines.
+- Run `skills/site-review/scripts/lh-audit.mjs` on all routes from the sitemap. If any page is under target, fix it and run again. Run each failing page at least twice, because one run can be noisy.
+- Measure the live URL as well (PageSpeed Insights in the browser), because the live site has real images and CDN; local runs can miss image costs.
+- Every report to Danish must include a table with Perf / A11y / Best Practices / SEO, LCP, CLS and TBT for each page (mobile + desktop). If a target is missed and can't be fixed, say so plainly and explain why; never imply it passed.
+- Heavy effects (three.js / WebGL, video, big animation libraries) must never run during page load. Start them on the visitor's first interaction (mouse move, touch, scroll, key) or when they scroll into view after load, and pause them off-screen. (Learned from Plumbing Demo 1: a 3D hero running from load gave mobile Performance 62 and TBT far over 150 ms.)
+- The LCP element (usually the H1) must be visible on the first frame: animate it with transform or blur only, never from `opacity: 0`.
+
 ## Speed (every site must be fast)
 
 - Lighthouse Performance ≥ 95 on mobile and desktop; Accessibility and Best Practices ≥ 95. (added 2026-11-03)
