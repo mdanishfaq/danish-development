@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 
 /**
  * Real-time 3D brass pipe network with water flowing through a glass run and splashing out of a spout.
- * three.js is loaded only after the page is idle, so it never blocks first paint (LCP is the headline).
+ * three.js loads on the first interaction, so it never blocks first paint or adds blocking time.
  */
 export function Hero3D({ className = "" }: { className?: string }) {
   const host = useRef<HTMLDivElement>(null);
@@ -19,7 +19,7 @@ export function Hero3D({ className = "" }: { className?: string }) {
       if (disposed) return;
       const w = () => el.clientWidth, h = () => el.clientHeight;
       const renderer = new T.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "high-performance" });
-      renderer.setPixelRatio(Math.min(devicePixelRatio, 1.75));
+      renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
       renderer.setSize(w(), h());
       renderer.toneMapping = T.ACESFilmicToneMapping;
       renderer.toneMappingExposure = 1.05;
@@ -60,7 +60,7 @@ export function Hero3D({ className = "" }: { className?: string }) {
       const tubes: { mesh: InstanceType<typeof T.Mesh> }[] = [];
       const addPipe = (pts: InstanceType<typeof T.Vector3>[], mat: InstanceType<typeof T.Material>, radius = 0.32) => {
         const curve = rounded(pts);
-        const mesh = new T.Mesh(new T.TubeGeometry(curve, 240, radius, 32, false), mat);
+        const mesh = new T.Mesh(new T.TubeGeometry(curve, 160, radius, 20, false), mat);
         rig.add(mesh); tubes.push({ mesh });
         // flanges at every straight-run joint
         const flangeGeo = new T.CylinderGeometry(radius * 1.32, radius * 1.32, 0.22, 32);
@@ -100,13 +100,13 @@ export function Hero3D({ className = "" }: { className?: string }) {
       gauge.rotation.x = Math.PI / 2; gauge.position.set(2.2, 3.2, 1.9); rig.add(gauge);
 
       // Water flowing through the glass run
-      const FLOW = 140;
+      const FLOW = 110;
       const drop = new T.SphereGeometry(0.11, 10, 10);
       const flow = new T.InstancedMesh(drop, water, FLOW); rig.add(flow);
       const offs = Float32Array.from({ length: FLOW }, () => Math.random());
       const jit = Array.from({ length: FLOW }, () => V((Math.random() - .5) * .34, (Math.random() - .5) * .34, (Math.random() - .5) * .34));
       // Splash out of the spout
-      const SPL = 220;
+      const SPL = 160;
       const splash = new T.InstancedMesh(new T.SphereGeometry(0.075, 8, 8), water, SPL); rig.add(splash);
       const sp = Array.from({ length: SPL }, () => ({ p: spoutEnd.clone(), v: V(0, 0, 0), life: Math.random() * 1.6 }));
       const resetDrop = (d: (typeof sp)[number]) => { d.p.copy(spoutEnd); d.v.set(-1.6 - Math.random() * 1.8, (Math.random() - .3) * 1.2, (Math.random() - .5) * 1.4); d.life = 0; };
@@ -165,10 +165,17 @@ export function Hero3D({ className = "" }: { className?: string }) {
         renderer.dispose(); pmrem.dispose(); renderer.domElement.remove();
       };
     };
-    const kick = () => { start().catch(() => {}); };
-    const idle = (window as unknown as { requestIdleCallback?: (cb: () => void, o?: object) => number }).requestIdleCallback;
-    const id = idle ? idle(kick, { timeout: 1500 }) : window.setTimeout(kick, 600);
-    return () => { disposed = true; if (!idle) clearTimeout(id); cleanup(); };
+    // Start 3D on the visitor's first interaction (mouse move, touch, scroll, key). The page is fully
+    // interactive before any WebGL work happens, so it never costs load time or blocking time.
+    const evs = ["pointermove", "pointerdown", "touchstart", "wheel", "scroll", "keydown"] as const;
+    let started = false;
+    const kick = () => {
+      if (started) return; started = true;
+      evs.forEach((e) => removeEventListener(e, kick));
+      requestAnimationFrame(() => { start().catch(() => {}); });
+    };
+    evs.forEach((e) => addEventListener(e, kick, { passive: true, once: true }));
+    return () => { disposed = true; evs.forEach((e) => removeEventListener(e, kick)); cleanup(); };
   }, []);
 
   return <div ref={host} className={`${className} transition-opacity duration-[1.4s] ${ready ? "opacity-100" : "opacity-0"}`} />;

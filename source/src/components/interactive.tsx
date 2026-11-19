@@ -257,7 +257,7 @@ export function AreaMap() {
         <ul className="mt-8 grid grid-cols-2 gap-x-6 gap-y-1">
           {areas.map((a, i) => (
             <li key={a.name} onPointerEnter={() => setHover(i)} onPointerLeave={() => setHover(null)} className={`flex justify-between border-b border-white/10 py-2.5 text-sm transition-colors ${sel === i ? "text-brass-2" : "text-bone/75"}`}>
-              <span>{a.name}</span><span className="text-bone/40">{a.eta}</span>
+              <span>{a.name}</span><span className="text-bone/60">{a.eta}</span>
             </li>
           ))}
         </ul>

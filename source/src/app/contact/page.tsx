@@ -15,7 +15,7 @@ export default function Contact() {
         <div className="relative mx-auto grid max-w-[88rem] gap-14 px-5 md:px-10 lg:grid-cols-[1fr_1.15fr]">
           <div>
             <Eyebrow className="mx-blur-up mb-6 text-brass-2">Book &amp; contact</Eyebrow>
-            <h1 className="h-xl mx-blur-up">Let&apos;s get this <span className="brass-text">flowing.</span></h1>
+            <h1 className="h-xl"><span className="hero-words"><span>Let&apos;s</span> <span style={{ ["--i" as string]: 2 }}>get</span> <span style={{ ["--i" as string]: 4 }}>this</span> <span className="brass-text" style={{ ["--i" as string]: 6 }}>flowing.</span></span></h1>
             <p className="mx-blur-up mt-8 max-w-md text-lg text-bone/75">Three quick steps and you&apos;re booked. Prefer a voice? Our dispatchers pick up 24/7.</p>
             <div className="mt-12 space-y-4">
               <a href={`tel:${brand.tel}`} className="mx-rise group flex items-center justify-between rounded-3xl bg-signal p-6 transition-transform hover:-translate-y-1" style={{ ["--i" as string]: 1 }}>
@@ -29,7 +29,7 @@ export default function Contact() {
               <p className="text-sm text-bone/50">{brand.hours}</p>
             </div>
           </div>
-          <div className="mx-dialog" style={{ animationDelay: "200ms" }}><BookingForm services={services} /></div>
+          <div className="rise-in"><BookingForm services={services} /></div>
         </div>
       </section>
     </>

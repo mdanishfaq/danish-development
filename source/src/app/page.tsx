@@ -33,10 +33,10 @@ export default function Home() {
             <span className="live-dot" aria-hidden="true" /> 7 plumbers on shift now · avg. arrival <b className="text-paper">54 min</b>
           </p>
           <h1 className="h-mega mt-8 max-w-[11ch]">
-            <span className="mx-words block" style={v({ "--start": "150ms" })}>
+            <span className="hero-words block" style={v({ "--start": "0ms" })}>
               {"Water goes where".split(" ").map((w, i) => <span key={i} style={v({ "--i": i * 3 })}>{w}&nbsp;</span>)}
             </span>
-            <span className="mx-words brass-text block pb-3" style={v({ "--start": "450ms" })}>
+            <span className="hero-words brass-text block pb-3" style={v({ "--start": "120ms" })}>
               {"we tell it.".split(" ").map((w, i) => <span key={i} style={v({ "--i": i * 3 })}>{w}&nbsp;</span>)}
             </span>
           </h1>

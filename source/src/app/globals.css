@@ -7,7 +7,7 @@
   --color-ink-3: #16283f;
   --color-brass: #e2a33b;
   --color-brass-2: #f6c76b;
-  --color-brass-3: #9c6a1c;
+  --color-brass-3: #7f5512;
   --color-aqua: #46e3d6;
   --color-aqua-2: #b6fff7;
   --color-bone: #f3eee4;
@@ -37,7 +37,7 @@ html.lenis, html.lenis body { height: auto; }
 .aqua-text { background: linear-gradient(100deg, #46e3d6, #b6fff7 50%, #46e3d6); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .outline-text { -webkit-text-stroke: 1.5px var(--stroke, currentColor); color: transparent; }
 
-.grain::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .07; mix-blend-mode: overlay; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+/* grain overlay removed: a full-section data-URI background became the LCP element and cost ~4s in Lighthouse mobile */
 
 @layer components {
 /* Buttons */
@@ -142,3 +142,10 @@ details[open]::details-content { block-size: auto; }
   ::view-transition-old(root), ::view-transition-new(root) { animation: none !important; }
   .tilt { transform: none !important; }
 }
+
+/* Hero headline: words rise in but stay opaque, so the LCP is painted on the first frame. */
+@keyframes hero-word { from { transform: translateY(.35em); filter: blur(4px); } }
+.hero-words > span { display: inline-block; animation: hero-word 1s var(--ease-quint) both; animation-delay: calc(var(--i, 0) * 25ms + var(--start, 0ms)); }
+@media (prefers-reduced-motion: reduce) { .hero-words > span { animation: none !important; } }
+.rise-in { animation: hero-word 900ms var(--ease-quint) 120ms both; }
+@media (prefers-reduced-motion: reduce) { .rise-in { animation: none !important; } }

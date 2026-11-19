@@ -25,7 +25,8 @@ export function Enter({ i = 0, effect = "blur-up", onView = false, as: Tag = "di
 /** motion.dev rolling digits. The real number is in the HTML. */
 export function RollingNumber({ value, label, className }: { value: string; label?: string; className?: string }) {
   return (
-    <span className={className} aria-label={label ?? value}>
+    <span className={className}>
+      <span className="sr-only">{label ?? value}</span>
       <span className="mx-digits" aria-hidden="true">
         {value.split("").map((ch, i) =>
           /\d/.test(ch)

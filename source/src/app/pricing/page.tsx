@@ -40,7 +40,7 @@ export default function Pricing() {
           <SectionHead eyebrow="Price list" title="Typical" accent="Austin prices." text="Ranges include parts and labour for a standard home. Prices are illustrative for this demo." />
           <table className="w-full text-left">
             <caption className="sr-only">Typical plumbing prices</caption>
-            <thead><tr className="border-b-2 border-ink text-sm uppercase tracking-widest text-ink/50"><th className="py-3 font-semibold">Job</th><th className="py-3 text-right font-semibold">Typical price</th></tr></thead>
+            <thead><tr className="border-b-2 border-ink text-sm uppercase tracking-widest text-ink/70"><th className="py-3 font-semibold">Job</th><th className="py-3 text-right font-semibold">Typical price</th></tr></thead>
             <tbody>
               {priceList.map((r, i) => (
                 <tr key={r.job} className="mx-blur-up mx-on-view group border-b border-ink/10 transition-colors hover:bg-bone" style={{ "--i": i } as CSSProperties}>

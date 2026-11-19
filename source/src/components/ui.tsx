@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ReactNode, CSSProperties } from "react";
+import { preload } from "react-dom";
 import { BASE, img, srcSet, type ImgKey } from "@/lib/site";
 
 export const ART = {
@@ -13,6 +14,7 @@ export type ArtKey = keyof typeof ART;
 
 /** Unsplash photo with responsive srcset. */
 export function Photo({ k, alt, sizes = "100vw", className = "", priority = false, style }: { k: ImgKey; alt: string; sizes?: string; className?: string; priority?: boolean; style?: CSSProperties }) {
+  if (priority) preload(img(k, 1200), { as: "image", imageSrcSet: srcSet(k), imageSizes: sizes, fetchPriority: "high" });
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img src={img(k, 1200)} srcSet={srcSet(k)} sizes={sizes} alt={alt} className={`h-full w-full object-cover ${className}`} style={style}
@@ -21,11 +23,13 @@ export function Photo({ k, alt, sizes = "100vw", className = "", priority = fals
 }
 
 /** Custom generated artwork (Figma AI), served from /art. */
-export function Art({ k, alt, className = "", priority = false }: { k: ArtKey; alt: string; className?: string; priority?: boolean }) {
+export function Art({ k, alt, className = "", priority = false, sizes = "(min-width:1024px) 45vw, 100vw" }: { k: ArtKey; alt: string; className?: string; priority?: boolean; sizes?: string }) {
   const a = ART[k];
+  const set = `${a.src.replace(".webp", "-800.webp")} 800w, ${a.src} ${a.w}w`;
+  if (priority) preload(a.src, { as: "image", imageSrcSet: set, imageSizes: sizes, fetchPriority: "high" });
   return (
     // eslint-disable-next-line @next/next/no-img-element
-    <img src={a.src} alt={alt} width={a.w} height={a.h} className={`h-full w-full object-cover ${className}`} loading={priority ? "eager" : "lazy"} decoding="async" />
+    <img src={a.src} srcSet={set} sizes={sizes} alt={alt} width={a.w} height={a.h} className={`h-full w-full object-cover ${className}`} loading={priority ? "eager" : "lazy"} fetchPriority={priority ? "high" : "auto"} decoding="async" />
   );
 }
 
@@ -92,7 +96,7 @@ export function PageHero({ eyebrow, title, accent, lede, photo, art, crumbs, chi
           </nav>
           <Eyebrow className="mx-blur-up mb-6 text-brass-2">{eyebrow}</Eyebrow>
           <h1 className="h-xl">
-            <span className="mx-words" style={{ display: "inline" }}>
+            <span className="hero-words" style={{ display: "inline" }}>
               {title.split(" ").map((w, i) => (<span key={i} style={{ "--i": i } as CSSProperties}>{w}&nbsp;</span>))}
             </span>
             {accent && <span className="brass-text block pb-2">{accent}</span>}
@@ -101,8 +105,8 @@ export function PageHero({ eyebrow, title, accent, lede, photo, art, crumbs, chi
           {children && <div className="mx-blur-up mt-10 flex flex-wrap gap-3" style={{ "--i": 6 } as CSSProperties}>{children}</div>}
         </div>
         {(photo || art) && (
-          <div className="relative aspect-[4/5] max-h-[34rem] w-full overflow-hidden rounded-blob lg:justify-self-end" style={{ animation: "mx-mask-up 1.2s var(--ease-dramatic) .2s both" }}>
-            {photo ? <Photo k={photo} alt="" sizes="(min-width:1024px) 40vw, 100vw" priority /> : <Art k={art!} alt="" priority />}
+          <div className="relative aspect-[16/10] max-h-[34rem] w-full overflow-hidden rounded-blob lg:aspect-[4/5] lg:justify-self-end" style={{ animation: "mx-mask-up 1.2s var(--ease-dramatic) .2s both" }}>
+            {photo ? <Photo k={photo} alt="" sizes="(min-width:1024px) 40vw, 100vw" priority /> : <Art k={art!} alt="" sizes="(min-width:1024px) 40vw, 100vw" priority />}
             <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent" />
           </div>
         )}

@@ -30,7 +30,7 @@ export function Footer() {
       </div>
       <div className="mx-auto flex max-w-[88rem] flex-col gap-3 border-t border-white/10 px-5 py-6 text-xs text-bone/50 md:flex-row md:items-center md:justify-between md:px-10">
         <p>© 2026 {brand.full} — a fictional brand. {brand.license}.</p>
-        <p>Demo website designed &amp; built by <a className="text-brass-2 underline-offset-4 hover:underline" href="https://danishishfaq.online/plumbing-demos">Danish Ishfaq</a>. Photos: Unsplash. Artwork: custom.</p>
+        <p>Demo website designed &amp; built by <a className="text-brass-2 underline underline-offset-4" href="https://danishishfaq.online/plumbing-demos">Danish Ishfaq</a>. Photos: Unsplash. Artwork: custom.</p>
       </div>
     </footer>
   );
