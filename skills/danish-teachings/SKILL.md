@@ -10,7 +10,8 @@ Newest rules go at the bottom of their section. Format: `- <rule> (added YYYY-MM
 
 ## Design
 
-- (empty — teach me your style)
+- Motion matters: Danish likes the animation quality of animejs.com, motion.dev, kokonutui.com, bklit.com and v0.app (scroll stories, pinned chapters, live demos in bento cells, charts that draw in, crisp springs). Study references fully with `reference-study` before designing. (added 2026-11-19)
+- When Danish's references conflict with taste-skill house rules, Danish's references win. (added 2026-11-19)
 
 ## Tech stack & plugins
 
@@ -19,6 +20,8 @@ Newest rules go at the bottom of their section. Format: `- <rule> (added YYYY-MM
 - Run web-design-guidelines review on every site before delivering. (added 2026-11-03)
 - Use awesome-design-md DESIGN.md files as design references when a style or brand is named. (added 2026-11-03)
 - Use playwright-cli for browser testing and screenshots. (added 2026-11-03)
+- Always build on the current stable versions: run the `stay-current` check at the start of every job. (added 2026-11-19)
+- Animation: use the cheapest tier that gives the feel (CSS, then scroll-driven CSS, then View Transitions, then Motion or anime.js, then WebGL), following `motion-craft`. One JS animation library per site at most. (added 2026-11-19)
 
 ## SEO (every site must be SEO-optimized)
 
@@ -29,6 +32,7 @@ Newest rules go at the bottom of their section. Format: `- <rule> (added YYYY-MM
 - Descriptive `alt` text on every image; meaningful link text (no "click here"); internal links between related pages. (added 2026-11-03)
 - Pages must be server-rendered or statically generated so all text is in the HTML; no content hidden behind client-only JS. (added 2026-11-03)
 - Lighthouse SEO score must be 100. (added 2026-11-03)
+- AI search: allow AI search crawlers (OAI-SearchBot, ChatGPT-User, PerplexityBot, Claude-SearchBot, Claude-User) in robots; write answer-first copy on service pages; set up Google Business Profile details in LocalBusiness schema. (added 2026-11-19)
 
 ## Speed (every site must be fast)
 
@@ -49,6 +53,10 @@ Newest rules go at the bottom of their section. Format: `- <rule> (added YYYY-MM
 
 - Deliver a demo link; Danish attaches domain and hosting later. (added 2026-11-03)
 - Read the repo to decide pages and layout; ask only when something critical is missing. (added 2026-11-03)
+- Ask all questions in one batch at the start, never a drip of questions; find things yourself first (repo, live site, project notes, web). (added 2026-11-19)
+- Research is the agent's job: keep up with new web trends and tools without being asked. (added 2026-11-19)
+- For a revamp, keep every working feature and all real content; show before/after Lighthouse scores. (added 2026-11-19)
+- Check your own work (screenshots, Lighthouse, a comparison with the references) before showing Danish anything. (added 2026-11-19)
 
 ## Never do
 
