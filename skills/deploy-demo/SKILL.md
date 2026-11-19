@@ -23,7 +23,14 @@ Use `--prod` only if Danish asks for a stable `<project>.vercel.app` link.
 If the repo is connected to Vercel's GitHub app, pushing the branch automatically creates a
 preview. Read the link from the PR checks: `gh pr checks` or the PR page.
 
-## Option C — no token available
+## Option C: Cloudflare Pages (when the site already lives there)
+
+With `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` set, build with the OpenNext Cloudflare adapter
+(`@opennextjs/cloudflare`) for a dynamic app, or `output: 'export'` for a fully static one, then
+`npx wrangler pages deploy <out-dir> --project-name <name> --branch <branch>`. The branch gets its own preview URL.
+If the Pages project is connected to GitHub, pushing the branch is enough: read the preview URL from the PR checks.
+
+## Option D: no token available
 
 Tell Danish: "Site is pushed to `<branch>`. To get a demo link, import the repo at
 vercel.com/new (free) or give me a VERCEL_TOKEN." Do not block on this — the build is done.
