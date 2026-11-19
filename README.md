@@ -11,12 +11,14 @@ You attach the domain and hosting later.
 GitHub repo (brief, content, images)
         │
         ▼
- 1. Load Danish's teachings (your rules)
- 2. Read the repo → write SITE_BRIEF.md (pages, layout, branding)
- 3. Build Next.js + Tailwind site
- 4. Production build + desktop/mobile screenshots → fix issues
- 5. Push to a branch / open PR
- 6. Deploy preview → demo link
+ 1. Load Danish's teachings + check the web is still how we remember it (stay-current)
+ 2. Read the repo / live site → write SITE_BRIEF.md
+ 3. Study every reference site: scroll, frames, hover, code → tick-list (reference-study)
+ 4. Art direction (taste-skill) → build Next.js + Tailwind v4 (build-nextjs-site)
+ 5. Senior-level motion inside the speed budget (motion-craft)
+ 6. Screenshots, design review, Lighthouse on every page → fix until targets met
+ 7. Push to a branch / open PR with before/after
+ 8. Deploy preview → demo link + scores
 ```
 
 ## Install
@@ -38,6 +40,9 @@ That one install includes everything below — no separate plugins to install.
 | web-design-guidelines | UI/UX/accessibility review before delivery | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) (MIT) |
 | playwright-cli | Browser testing and screenshots | [microsoft/playwright-cli](https://github.com/microsoft/playwright-cli) (Apache-2.0) |
 | design-references | Brand-style DESIGN.md references | [VoltAgent/awesome-design-md](https://github.com/VoltAgent/awesome-design-md) (MIT) |
+| reference-study | Full study of sites you like: scroll, frames, hover, code, timings | Danish Development |
+| motion-craft | Animation at a senior level within the speed budget | Danish Development |
+| stay-current | Current versions, browser features, SEO and AI-search changes | Danish Development |
 
 Bundled third-party skills keep their original LICENSE file in their folder.
 
@@ -88,7 +93,10 @@ skills/
   danish-teachings/    your rules (grows as you teach)
   site-brief/          reads the repo, writes SITE_BRIEF.md
   build-nextjs-site/   builds the site
-  deploy-demo/         demo link
+  deploy-demo/         demo link (Vercel or Cloudflare Pages)
+  reference-study/     studies reference sites you like
+  motion-craft/        animation playbook + timing tokens
+  stay-current/        what's new on the web (checked every job)
   design-references/   awesome-design-md brand references
   taste-skill/         art direction (bundled, MIT)
   web-design-guidelines/ UI review (bundled, MIT)
