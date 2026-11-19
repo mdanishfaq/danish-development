@@ -29,21 +29,30 @@ Rules:
 - No scroll-jacking: native scroll always. Smooth-scroll libraries (Lenis) only if Danish asks.
 - Animate only `transform`, `opacity`, `clip-path` and `filter`. Never animate `width`, `height`, `top` or `left`.
 
-## 2. The timing system (from studying anime.js, motion.dev, kokonutui, bklit and v0)
+## 2. The timing system (measured in the code of anime.js, motion.dev, kokonutui, bklit and v0, Nov 2026)
 
-| Token | Value | Use |
+| Token | Value | Seen on |
 | --- | --- | --- |
-| `--dur-micro` | 100-150 ms | press, toggle, tooltip |
-| `--dur-ui` | 250-350 ms | hover, card swap, tab change, menu |
-| `--dur-reveal` | 600-900 ms | section entrance |
-| `--dur-hero` | 1000-1500 ms | intro sequence, SVG line draw |
-| ambient | 10-20 s linear | slow rotations, marquees, idle loops |
-| `--ease-out` | `cubic-bezier(.22,1,.36,1)` | entrances (anime.js `out(3)` feel) |
-| `--ease-in-out` | `cubic-bezier(.65,0,.35,1)` | moves between two states (`inOut(3)`) |
-| spring | stiffness 300-500, damping 30-40 | UI that follows the hand: drag, toggles, layout |
-| stagger | 20-40 ms per letter, 60-90 ms per block | text and list reveals |
+| `--dur-micro` | 100-150 ms | press, colour and background hovers (motion.dev 0.12-0.16 s) |
+| `--dur-ui` | 150-250 ms | hover lift, tooltip, menu (v0 0.15-0.2 s, anime.js 250 ms) |
+| `--dur-swap` | 300-400 ms | tab or panel swaps, clip-path wipe 0.4 s (motion.dev) |
+| `--dur-reveal` | 300-500 ms | section entrances: **small travel, 6-8 px**, never big slides |
+| `--dur-hero` | 1000-1500 ms | intro sequence, SVG line draw (anime.js 1 s inOutExpo), digit rolls |
+| loops | 2.4-3.6 s; ambient 8-20 s linear | demo loops (motion.dev), floats (v0 8 s), rotations (anime.js 10-20 s) |
+| `--ease-out-strong` | `cubic-bezier(.23,1,.32,1)` | entrances (kokonut; the anime.js `out(3)` feel) |
+| `--ease-out-expo` | `cubic-bezier(.16,1,.3,1)` | motion.dev reveals and counters |
+| `--ease-sharp` | `cubic-bezier(.25,0,0,1)` | wipes |
+| `--ease-sheet` | `cubic-bezier(.32,.72,0,1)` | drawers and sheets (v0) |
+| springs | stiffness 200-550, damping 18-40, bounce 0-0.15 | snappy UI, no wobble; softer (80-100 / 15) for chart tooltips |
+| stagger | 10-40 ms per letter or tick; 50 ms per block | kokonut waves of 50 ms; anime.js 10-40 ms |
 
-Put these in the Tailwind v4 `@theme` block as CSS variables so every component shares them.
+**Ready-made, tested code is in `recipes/`:** `motion.css` (tokens + 10 effects), `components.tsx` (server components:
+RollingNumber, ScoreRing, DrawLine, Settle) and `client.tsx` (PromptHero, Story, WipeTabs). It was tested on Next.js 16.4.6:
+all ten recipes add about 1 KB of JS, pass `page-check` at desktop and phone, and keep content visible with reduced motion.
+Copy from there instead of rewriting.
+
+Testing lesson: scroll-driven reveals (`animation-timeline: view()`) leave below-fold content in its start state until
+it's scrolled to, so judge screenshots taken *after* scrolling to the bottom (`page-check` does this).
 
 ## 3. Patterns Danish likes (build these well)
 

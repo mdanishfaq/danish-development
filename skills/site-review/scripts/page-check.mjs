@@ -46,12 +46,14 @@ for (const vp of VIEWPORTS) {
     page.on('response', r => { if (r.request().resourceType() === 'script') bodies.push(r.body().then(b => { jsBytes += gzipSync(b).length; }).catch(() => {})); }); // gzip size, like Next's First Load JS
     const resp = await page.goto(base + route, { waitUntil: 'networkidle', timeout: 45000 }).catch(e => null);
     // scroll through so lazy content and scroll animations run
-    await page.evaluate(async () => { for (let y = 0; y < document.documentElement.scrollHeight; y += innerHeight * 0.8) { scrollTo(0, y); await new Promise(r => setTimeout(r, 120)); } scrollTo(0, 0); });
-    await page.waitForTimeout(400);
+    // Scroll to the bottom like a reader, and STAY there: scroll-driven reveals (animation-timeline: view())
+    // only finish once an element has entered, so a full-page shot taken from the top shows below-fold content hidden.
+    await page.evaluate(async () => { for (let y = 0; y <= document.documentElement.scrollHeight; y += innerHeight * 0.6) { scrollTo(0, y); await new Promise(r => setTimeout(r, 120)); } scrollTo(0, document.documentElement.scrollHeight); });
+    await page.waitForTimeout(600);
     const facts = await page.evaluate(() => ({
       overflow: document.documentElement.scrollWidth - innerWidth,
       brokenImgs: [...document.images].filter(i => i.complete && i.naturalWidth === 0).map(i => i.currentSrc || i.src).slice(0, 5),
-      hiddenAfterScroll: [...document.querySelectorAll('h1,h2,h3,p')].filter(e => { const s = getComputedStyle(e); return e.textContent.trim() && (s.opacity === '0' || s.visibility === 'hidden'); }).length,
+      hiddenAfterScroll: [...document.querySelectorAll('h1,h2,h3,p,li,figure,svg')].filter(e => { if (e.closest('[hidden],[aria-hidden="true"]')) return false; let o = 1; for (let n = e; n && n.nodeType === 1; n = n.parentElement) o *= +getComputedStyle(n).opacity; return (e.tagName === 'svg' || e.textContent.trim()) && (o < 0.5 || getComputedStyle(e).visibility === 'hidden'); }).length,
       tapTargetsSmall: matchMedia('(pointer: coarse)').matches ? [...document.querySelectorAll('a,button')].filter(e => { const r = e.getBoundingClientRect(); return r.width && r.height && (r.width < 24 || r.height < 24); }).length : 0,
     }));
     const slug = (route === '/' ? 'home' : route.replace(/^\//, '').replace(/\//g, '_')) + '-' + vp.name;
