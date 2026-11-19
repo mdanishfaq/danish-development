@@ -1,0 +1,167 @@
+/* =====================================================================
+   Danish Development MOTION LIBRARY (style-free)
+   Every value below was extracted from the production code of animejs.com, motion.dev,
+   kokonutui.com, bklit.com and v0.app (Nov 2026). This file contains MOTION ONLY:
+   no colours, fonts, radii or layout decisions. Your site's design sets the look.
+   Rules: transform / opacity / filter / clip-path / stroke only; content is visible without JS;
+   every effect has a prefers-reduced-motion fallback at the bottom.
+   ===================================================================== */
+
+@theme {
+  /* Eases (see data/reference-motion.json) */
+  --ease-out: cubic-bezier(.23, 1, .32, 1);          /* kokonut, most used */
+  --ease-expo: cubic-bezier(.16, 1, .3, 1);          /* motion.dev, v0 */
+  --ease-quint: cubic-bezier(.22, 1, .36, 1);        /* bklit, v0, anime out(3)/outQuint */
+  --ease-material: cubic-bezier(.4, 0, .2, 1);       /* loops, loaders */
+  --ease-sheet: cubic-bezier(.32, .72, 0, 1);        /* drawers, sheets */
+  --ease-dramatic: cubic-bezier(.85, 0, .15, 1);     /* big moves (bklit) */
+  --ease-wipe: cubic-bezier(.25, 0, 0, 1);           /* clip-path wipes (motion.dev) */
+  --ease-inout: cubic-bezier(.65, 0, .35, 1);        /* anime inOut(3): swaps, cards */
+  --ease-inout-expo: cubic-bezier(.87, 0, .13, 1);   /* anime inOutExpo: line draws, rotations */
+  /* Durations */
+  --dur-instant: 80ms;  --dur-micro: 150ms;  --dur-ui: 240ms;  --dur-swap: 350ms;
+  --dur-reveal: 450ms;  --dur-text: 1000ms;  --dur-hero: 1500ms;
+  /* Staggers */
+  --stagger-char: 25ms;  --stagger-row: 30ms;  --stagger-block: 50ms;  --stagger-card: 100ms;
+}
+
+/* ---------- ENTRANCES (set --i on each item for the stagger index) ---------- */
+@keyframes mx-blur-up   { from { opacity: 0; filter: blur(2px); transform: translateY(6px); } }   /* kokonut home-enter */
+@keyframes mx-blur-left { from { opacity: 0; filter: blur(2px); transform: translateX(-6px); } }  /* kokonut */
+@keyframes mx-slide-up  { from { opacity: 0; transform: translateY(8px); } }                      /* motion.dev */
+@keyframes mx-rise      { from { opacity: 0; transform: translateY(16px); } }                     /* motion.dev cards */
+@keyframes mx-pop       { from { opacity: 0; transform: scale(.55); } }                           /* bklit dots/markers */
+@keyframes mx-zoom-soft { from { opacity: 0; transform: scale(.96); } }                           /* kokonut popovers */
+@keyframes mx-dialog    { from { opacity: 0; transform: translateY(1px) scale(.985); } }          /* v0 dialogs */
+@keyframes mx-panel     { from { opacity: 0; transform: translateX(16px); } }                     /* kokonut side panels */
+@keyframes mx-grow-y    { from { transform: scaleY(0); } }                                        /* bklit bars */
+@keyframes mx-grow-x    { from { transform: scaleX(0); } }                                        /* v0 progress */
+@keyframes mx-wipe-in   { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } } /* motion.dev */
+@keyframes mx-mask-in   { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
+
+.mx-blur-up   { animation: mx-blur-up var(--dur-ui) var(--ease-out) both; animation-delay: calc(var(--i, 0) * var(--stagger-block)); }
+.mx-blur-left { animation: mx-blur-left var(--dur-ui) var(--ease-out) both; animation-delay: calc(var(--i, 0) * var(--stagger-row)); }
+.mx-slide-up  { animation: mx-slide-up var(--dur-ui) var(--ease-expo) both; animation-delay: calc(var(--i, 0) * 40ms); }
+.mx-rise      { animation: mx-rise var(--dur-reveal) var(--ease-expo) both; animation-delay: calc(var(--i, 0) * var(--stagger-card)); }
+.mx-pop       { animation: mx-pop var(--dur-swap) var(--ease-quint) both; animation-delay: calc(var(--i, 0) * var(--stagger-row)); }
+.mx-zoom-soft { animation: mx-zoom-soft var(--dur-micro) var(--ease-out) both; transform-origin: var(--origin, top); }
+.mx-dialog    { animation: mx-dialog var(--dur-ui) var(--ease-out) both; }
+.mx-panel     { animation: mx-panel var(--dur-ui) var(--ease-sheet) both; }
+.mx-grow-y    { animation: mx-grow-y var(--dur-reveal) var(--ease-quint) both; transform-origin: bottom; animation-delay: calc(var(--i, 0) * var(--stagger-row)); }
+.mx-grow-x    { animation: mx-grow-x 400ms ease-in-out both; transform-origin: left; }
+.mx-wipe      { animation: mx-wipe-in 450ms var(--ease-wipe) 150ms both; }
+
+/* Same entrances, but triggered by scrolling into view (CSS only; Baseline since Firefox 159). */
+@supports (animation-timeline: view()) {
+  .mx-on-view { animation-timeline: view() !important; animation-range: entry 0% entry 70% !important; animation-delay: 0s !important; animation-duration: auto !important; }
+}
+
+/* ---------- TEXT ---------- */
+/* anime.js text-appear: words (or chars) slide .35em and fade, 1s outQuint, 25ms stagger.
+   Markup: <span class="mx-words"><span style="--i:0">Word</span> <span style="--i:1">two</span></span> (server-split, see components.tsx) */
+@keyframes mx-word-in { from { opacity: 0; transform: translateX(.35em); } }
+/* Keep gradient / clipped text working when the heading is split into words. */
+.mx-words, .mx-words > span { background: inherit; -webkit-background-clip: inherit; background-clip: inherit; }
+.mx-words > span { display: inline-block; animation: mx-word-in var(--dur-text) var(--ease-quint) both; animation-delay: calc(var(--i, 0) * var(--stagger-char) + var(--start, 0ms)); }
+/* kokonut label roll: old label leaves up 14px blurred, new arrives from below. Toggle by re-keying the element. */
+@keyframes mx-roll-in { from { opacity: 0; filter: blur(2px); transform: translateY(14px); } }
+.mx-roll-in { animation: mx-roll-in var(--dur-ui) var(--ease-out) both; }
+/* kokonut icon swap: rotate -30deg + blur in. */
+@keyframes mx-icon-in { from { opacity: 0; filter: blur(2px); transform: rotate(-30deg); } }
+.mx-icon-in { animation: mx-icon-in var(--dur-micro) var(--ease-out) both; }
+
+/* ---------- NUMBERS ---------- */
+/* motion.dev rolling digits: each digit is a 0-9 column; final value is in the server HTML. */
+.mx-digits { display: inline-flex; overflow: hidden; height: 1lh; font-variant-numeric: tabular-nums; }
+.mx-digit { display: flex; flex-direction: column; transform: translateY(calc(var(--d) * -1lh)); }
+.mx-digit > span { height: 1lh; }
+@keyframes mx-roll { from { transform: translateY(0); } }
+@supports (animation-timeline: view()) {
+  .mx-digits .mx-digit { animation: mx-roll var(--dur-hero) var(--ease-expo) both; animation-timeline: view(); animation-range: entry 20% cover 40%; }
+}
+
+/* ---------- SVG: LINES, CHARTS, RINGS, LOADERS (paths need pathLength="1", rings pathLength="100") ---------- */
+@keyframes mx-draw { from { stroke-dashoffset: 1; } }                                   /* anime draw '0 0'->'0 1', bklit pathLength */
+.mx-draw { stroke-dasharray: 1; stroke-dashoffset: 0; animation: mx-draw var(--dur-text) var(--ease-inout-expo) both; }
+@supports (animation-timeline: view()) { .mx-draw.mx-on-view { animation-timing-function: linear; animation-range: entry 10% cover 45% !important; } }
+.mx-ring { stroke-dasharray: 100; stroke-dashoffset: calc(100 - var(--value)); transform: rotate(-90deg); transform-origin: center; }
+@keyframes mx-ring-fill { from { stroke-dashoffset: 100; } }
+@supports (animation-timeline: view()) { .mx-ring { animation: mx-ring-fill linear both; animation-timeline: view(); animation-range: entry 10% cover 40%; } }
+@keyframes mx-draw-erase { 0% { stroke-dashoffset: 1; } 45%, 55% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: -1; } } /* v0 loader */
+.mx-loader path { stroke-dasharray: 1; animation: mx-draw-erase 1.5s var(--ease-material) infinite; }
+/* bklit series focus: dim siblings on hover. */
+.mx-focus-group:has(.mx-focus:hover) .mx-focus:not(:hover) { opacity: .35; }
+.mx-focus { transition: opacity var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out); transform-box: fill-box; transform-origin: center; }
+.mx-focus:hover { transform: scale(1.05); }
+
+/* ---------- GRIDS & PATTERNS ---------- */
+/* anime.js grid ripple from the centre: set --dist (0..1, distance from centre) on each cell. */
+@keyframes mx-ripple { 0%, 100% { transform: scale(1); } 40% { transform: scale(var(--peak, 2.2)); } }
+.mx-ripple > * { animation: mx-ripple 1.5s var(--ease-inout) infinite; animation-delay: calc(var(--dist, 0) * 600ms); }
+/* anime.js flicker-on (bg paths): stepped opacity, random-ish delay via --r (0..1). */
+@keyframes mx-flicker { 0%, 40%, 80% { opacity: 0; } 20%, 60%, 100% { opacity: 1; } }
+.mx-flicker { animation: mx-flicker 200ms steps(1) both; animation-delay: calc(var(--r, 0) * 800ms); }
+
+/* ---------- HOVER / PRESS / GESTURE ---------- */
+.mx-lift { transition: transform var(--dur-ui) var(--ease-out); }
+.mx-lift:hover { transform: translateY(-4px); }
+.mx-grow { transition: transform 350ms var(--ease-quint); }          /* anime draggable hover 1.15 / press .8 */
+.mx-grow:hover { transform: scale(1.15); }
+.mx-grow:active { transform: scale(.8); }
+.mx-press { transition: transform var(--dur-instant) var(--ease-out); }
+.mx-press:active { transform: scale(.97); }
+@keyframes mx-like { 0% { transform: scale(1); } 90% { transform: scale(1.25); } 100% { transform: scale(1.1); } } /* v0 */
+.mx-like[aria-pressed="true"] { animation: mx-like 350ms var(--ease-out) both; }
+@keyframes mx-ping-ring { 0% { box-shadow: 0 0 0 0 var(--ring, currentColor); } 100% { box-shadow: 0 0 0 10px transparent; } } /* v0 pulseBorder feel */
+.mx-ping:focus-visible, .mx-ping[data-ping] { animation: mx-ping-ring 1.25s ease-out; }
+
+/* ---------- LOOPS / AMBIENT (pause off-screen with .mx-paused) ---------- */
+@keyframes mx-float   { 50% { transform: translate(4px, 8px); } }                         /* v0 */
+@keyframes mx-spin    { to { transform: rotate(1turn); } }                                /* anime ambient 10-64s */
+@keyframes mx-marquee { to { transform: translateX(-50%); } }                             /* v0 slideShow (duplicate the row) */
+@keyframes mx-cycle-row { 0%, 30% { transform: none; opacity: 1; } 55%, 70% { transform: translateX(-12%); opacity: 0; } 85%, 100% { transform: none; opacity: 1; } } /* motion.dev diag */
+@keyframes mx-cycle-bar { 0% { transform: scaleX(0); } 45% { transform: scaleX(1); } 90%, 100% { transform: scaleX(0); } }
+@keyframes mx-shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+.mx-float   { animation: mx-float 8s ease-in-out infinite; }
+.mx-spin    { animation: mx-spin var(--period, 20s) linear infinite; }
+.mx-marquee { display: flex; width: max-content; animation: mx-marquee var(--period, 30s) linear infinite; }
+.mx-cycle-row { animation: mx-cycle-row 3s var(--ease-material) infinite; animation-delay: calc(var(--i, 0) * 200ms); }
+.mx-cycle-bar { transform-origin: left; animation: mx-cycle-bar 2.4s cubic-bezier(.4, 0, .4, 1) infinite; }
+.mx-shimmer { background-size: 200% 100%; animation: mx-shimmer 1.6s ease-in-out infinite; } /* set background-image yourself */
+.mx-paused, .mx-paused * { animation-play-state: paused !important; }
+
+/* ---------- SCROLL STORY (anime.js pinned chapters) ---------- */
+.mx-story { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 5rem); }
+.mx-story-stage { position: sticky; top: 15vh; height: 70vh; }
+.mx-story-stage > [data-step] { position: absolute; inset: 0; opacity: 0; transform: translateY(8px); transition: opacity var(--dur-swap) var(--ease-inout), transform var(--dur-swap) var(--ease-inout); }
+.mx-story-stage > [data-active] { opacity: 1; transform: none; }
+.mx-chapter { min-height: 70vh; display: flex; align-items: center; }
+.mx-chapter:first-child { min-height: 55vh; align-items: flex-start; padding-top: 15vh; }
+@media (max-width: 768px) {
+  .mx-story { grid-template-columns: 1fr; }
+  .mx-story-stage { position: relative; top: 0; height: auto; }
+  .mx-story-stage > [data-step] { position: relative; opacity: 1; transform: none; }
+}
+/* Scroll progress bar (motion.dev useScroll -> pure CSS). */
+@keyframes mx-progress { from { transform: scaleX(0); } }
+@supports (animation-timeline: scroll()) { .mx-progress { transform-origin: left; animation: mx-progress linear both; animation-timeline: scroll(root); } }
+/* Accordion height: auto (kokonut height 0 -> auto) without JS where supported. */
+:root { interpolate-size: allow-keywords; }
+.mx-collapse { overflow: hidden; height: 0; transition: height var(--dur-ui) var(--ease-out), opacity var(--dur-ui) var(--ease-out); opacity: 0; }
+[open] > .mx-collapse, .mx-collapse[data-open] { height: auto; opacity: 1; }
+
+/* ---------- PAGE TRANSITIONS (React <ViewTransition> / @view-transition) ---------- */
+@view-transition { navigation: auto; }
+::view-transition-old(root) { animation: 160ms ease-in both mx-vt-out; }
+::view-transition-new(root) { animation: 240ms var(--ease-out) both mx-vt-in; }
+@keyframes mx-vt-out { to { opacity: 0; transform: translateY(-12px); } }   /* motion.dev exit: y -12, .16s easeIn */
+@keyframes mx-vt-in  { from { opacity: 0; transform: translateY(12px); } }   /* motion.dev enter: y 12, .24s easeOut */
+
+/* ---------- REDUCED MOTION: keep content, drop travel ---------- */
+@media (prefers-reduced-motion: reduce) {
+  [class*="mx-"], [class*="mx-"] > *, .mx-loader path, ::view-transition-old(root), ::view-transition-new(root) {
+    animation-duration: 1ms !important; animation-iteration-count: 1 !important; animation-delay: 0s !important; transition-duration: 1ms !important;
+  }
+  .mx-float, .mx-spin, .mx-marquee, .mx-cycle-row, .mx-cycle-bar, .mx-shimmer, .mx-ripple > *, .mx-loader path { animation: none !important; }
+  .mx-story-stage > [data-step] { transform: none; }
+}

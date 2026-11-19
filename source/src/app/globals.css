@@ -1,0 +1,92 @@
+@import "tailwindcss";
+@import "./motion.css";
+
+@theme {
+  --color-navy: #10223a;
+  --color-navy-2: #1b3456;
+  --color-sky: #8fd3ff;
+  --color-sky-2: #e9f7ff;
+  --color-sun: #ffc93c;
+  --color-sun-2: #ffe69a;
+  --color-blue: #1f63d6;
+  --color-blue-2: #1a54b8;
+  --color-coral: #c4321d;
+  --color-coral-2: #ff6b5b;
+  --color-mint: #2fbf6c;
+  --color-cream: #fffaf0;
+  --color-ink: #10223a;
+  --font-display: var(--font-fredoka), ui-rounded, system-ui, sans-serif;
+  --font-sans: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+  --radius-blob: 2.5rem;
+}
+
+html { background: var(--color-sky-2); }
+body { font-family: var(--font-sans); background: var(--color-cream); color: var(--color-navy); -webkit-font-smoothing: antialiased; }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+::selection { background: var(--color-sun); color: var(--color-navy); }
+:focus-visible { outline: 3px solid var(--color-blue); outline-offset: 3px; border-radius: 8px; }
+
+.font-display { font-family: var(--font-display); }
+.h-mega { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.9rem, 7.4vw, 7rem); line-height: .92; letter-spacing: -0.025em; }
+.h-xl { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.3rem, 5vw, 4.5rem); line-height: .98; letter-spacing: -0.02em; }
+.h-lg { font-family: var(--font-display); font-weight: 650; font-size: clamp(1.8rem, 3.4vw, 3rem); line-height: 1.02; letter-spacing: -0.015em; }
+
+/* Squishy toy buttons */
+@layer components {
+  .btn { display: inline-flex; align-items: center; gap: .55rem; height: 3.4rem; padding: 0 1.6rem; border-radius: 999px; font-family: var(--font-display); font-weight: 600; font-size: 1.05rem;
+    box-shadow: 0 5px 0 0 var(--btn-shadow, #10223a); transform: translateY(0); transition: transform 180ms var(--ease-out), box-shadow 180ms var(--ease-out); }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 7px 0 0 var(--btn-shadow, #10223a); }
+  .btn:active { transform: translateY(4px); box-shadow: 0 1px 0 0 var(--btn-shadow, #10223a); }
+  .btn-sun { background: var(--color-sun); color: var(--color-navy); --btn-shadow: #c9930e; }
+  .btn-blue { background: var(--color-blue); color: white; --btn-shadow: #163f8f; }
+  .btn-coral { background: var(--color-coral); color: white; --btn-shadow: #8e2318; }
+  .btn-white { background: white; color: var(--color-navy); --btn-shadow: #b9cde3; }
+  .chip { display: inline-flex; align-items: center; gap: .5rem; border-radius: 999px; padding: .45rem 1rem; font-weight: 700; font-size: .85rem; }
+  .card-toy { border-radius: var(--radius-blob); box-shadow: 0 8px 0 0 rgba(16, 34, 58, .12), 0 30px 60px -30px rgba(16, 34, 58, .35); }
+  .wobble:hover { animation: wobble .6s var(--ease-out); }
+}
+@keyframes wobble { 30% { transform: rotate(-3deg) scale(1.03); } 60% { transform: rotate(2deg) scale(1.02); } }
+@keyframes bob { 50% { transform: translateY(-10px); } }
+.bob { animation: bob 3.2s ease-in-out infinite; }
+@keyframes drift-x { from { transform: translateX(-10vw); } to { transform: translateX(110vw); } }
+
+/* The journey: sky that turns to night near the emergency stop (--night set by the 3D scene) */
+.journey, .journey-bg { background: color-mix(in oklab, #bfe6ff, #0d1b33 calc(var(--night, 0) * 100%)); transition: background-color .3s linear; }
+.journey .stop-card { background: color-mix(in oklab, #ffffff, #182a47 calc(var(--night, 0) * 100%)); color: color-mix(in oklab, #10223a, #ffffff calc(var(--night, 0) * 100%)); }
+.journey .stop-muted { color: color-mix(in oklab, rgba(16,34,58,.75), rgba(255,255,255,.8) calc(var(--night, 0) * 100%)); }
+
+/* Stop cards pop in */
+@supports (animation-timeline: view()) {
+  .stop-card { animation: stop-in linear both; animation-timeline: view(); animation-range: entry 0% entry 60%; }
+}
+@keyframes stop-in { from { transform: translateY(40px) scale(.94) rotate(-1.5deg); } }
+
+/* Hero words */
+@keyframes hero-word { from { transform: translateY(.4em) rotate(4deg); filter: blur(4px); } }
+.hero-words > span { display: inline-block; animation: hero-word 900ms var(--ease-out) both; animation-delay: calc(var(--i, 0) * 60ms); }
+
+/* Page transitions: a bubbly circle reveal */
+::view-transition-old(root) { animation: 420ms var(--ease-out) both vt-out; }
+::view-transition-new(root) { animation: 700ms var(--ease-expo) both vt-in; }
+@keyframes vt-out { to { opacity: .4; transform: scale(.96); } }
+@keyframes vt-in { from { clip-path: circle(0% at 50% 100%); } to { clip-path: circle(150% at 50% 100%); } }
+::view-transition-group(site-header) { animation-duration: 0s; }
+
+details summary::-webkit-details-marker { display: none; }
+details[open] .acc-icon { transform: rotate(45deg); background: var(--color-sun); }
+.acc-icon { transition: transform 350ms var(--ease-quint); }
+details::details-content { block-size: 0; overflow: hidden; transition: block-size 450ms var(--ease-expo), content-visibility 450ms allow-discrete; }
+details[open]::details-content { block-size: auto; }
+
+.site-header { transition: transform 500ms var(--ease-expo); }
+.site-header[data-hidden="true"] { transform: translateY(-130%); }
+
+@media (prefers-reduced-motion: reduce) {
+  .bob, .hero-words > span, .stop-card, .wobble:hover, [class*="mx-"] { animation: none !important; }
+  ::view-transition-old(root), ::view-transition-new(root) { animation: none !important; }
+}
+
+body:has(.render-root) .site-header, body:has(.render-root) footer, body:has(.render-root) main > :not(.render-root) { display: none !important; }
+body:has(.render-root) { background: transparent !important; }
+html:has(.render-root) { background: transparent !important; }
