@@ -13,8 +13,8 @@ export const ART = {
 export type ArtKey = keyof typeof ART;
 
 /** Unsplash photo with responsive srcset. */
-export function Photo({ k, alt, sizes = "100vw", className = "", priority = false, style }: { k: ImgKey; alt: string; sizes?: string; className?: string; priority?: boolean; style?: CSSProperties }) {
-  if (priority) preload(img(k, 1200), { as: "image", imageSrcSet: srcSet(k), imageSizes: sizes, fetchPriority: "high", media: "(min-width: 1024px)" });
+export function Photo({ k, alt, sizes = "100vw", className = "", priority = false, preloadMedia = "(min-width: 1024px)", style }: { k: ImgKey; alt: string; sizes?: string; className?: string; priority?: boolean; preloadMedia?: string; style?: CSSProperties }) {
+  if (priority) preload(img(k, 1200), { as: "image", imageSrcSet: srcSet(k), imageSizes: sizes, fetchPriority: "high", ...(preloadMedia ? { media: preloadMedia } : {}) });
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img src={img(k, 1200)} srcSet={srcSet(k)} sizes={sizes} alt={alt} className={`h-full w-full object-cover ${className}`} style={style}

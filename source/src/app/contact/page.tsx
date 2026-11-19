@@ -26,7 +26,7 @@ export default function Contact() {
                 <a href={`mailto:${brand.email}`} className="rounded-3xl bg-white/5 p-6 ring-1 ring-white/10 transition hover:bg-white/10"><span className="eyebrow block text-brass-2">Email</span><span className="mt-2 block break-all">{brand.email}</span></a>
                 <div className="rounded-3xl bg-white/5 p-6 ring-1 ring-white/10"><span className="eyebrow block text-brass-2">Visit</span><address className="mt-2 not-italic">{brand.address}</address></div>
               </div>
-              <p className="text-sm text-bone/50">{brand.hours}</p>
+              <p className="text-sm text-bone/70">{brand.hours}</p>
             </div>
           </div>
           <div className="rise-in"><BookingForm services={services} /></div>

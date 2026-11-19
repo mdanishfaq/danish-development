@@ -41,7 +41,7 @@ export function ServiceReveal({ items }: { items: Service[] }) {
         {items.map((s, i) => (
           <li key={s.slug} onPointerEnter={() => setActive(i)} className="mx-blur-up mx-on-view border-b border-ink/15">
             <Link href={`/services/${s.slug}/`} className="group grid grid-cols-[3rem_1fr_auto] items-center gap-4 py-7 md:grid-cols-[5rem_1fr_1fr_auto] md:py-9">
-              <span className="font-display text-sm font-semibold text-ink/40">0{i + 1}</span>
+              <span className="font-display text-sm font-semibold text-ink/60">0{i + 1}</span>
               <span className="font-display text-3xl font-bold tracking-tight transition-transform duration-500 [transition-timing-function:var(--ease-expo)] group-hover:translate-x-3 md:text-5xl">{s.name}</span>
               <span className="hidden max-w-sm text-ink/60 md:block">{s.short}</span>
               <span className="grid h-12 w-12 place-items-center rounded-full ring-1 ring-ink/20 transition-all duration-500 group-hover:rotate-[-45deg] group-hover:bg-ink group-hover:text-brass">
@@ -151,7 +151,7 @@ export function Estimator() {
         <div aria-hidden="true" className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-brass/30 blur-3xl" />
         <p className="eyebrow relative text-bone/60">Typical price</p>
         <p className="font-display relative mt-4 text-5xl font-bold tracking-tight md:text-6xl" aria-live="polite">
-          <span key={`${lo}-${hi}`} className="mx-roll-in inline-block">${lo.toLocaleString()}<span className="text-bone/40">–</span>${hi.toLocaleString()}</span>
+          <span key={`${lo}-${hi}`} className="mx-roll-in inline-block">${lo.toLocaleString()}<span className="text-bone/60">–</span>${hi.toLocaleString()}</span>
         </p>
         <p className="relative mt-4 text-sm text-bone/60">A guide only. You always get a fixed written price before we start.</p>
         <Link href="/contact/" className="btn btn-brass relative mt-8 self-start">Book this job<span className="arrow"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#000" strokeWidth="1.8" strokeLinecap="round" /></svg></span></Link>
@@ -190,7 +190,7 @@ export function BookingForm({ services }: { services: { slug: string; name: stri
         {steps.map((s, i) => (
           <li key={s} className="flex-1">
             <span className="block h-1.5 overflow-hidden rounded-full bg-ink/10"><span className="block h-full origin-left bg-brass transition-transform duration-700 [transition-timing-function:var(--ease-expo)]" style={{ transform: `scaleX(${i <= step ? 1 : 0})` }} /></span>
-            <span className={`mt-2 block text-xs font-semibold uppercase tracking-widest ${i === step ? "text-ink" : "text-ink/40"}`} aria-current={i === step ? "step" : undefined}>{i + 1}. {s}</span>
+            <span className={`mt-2 block text-xs font-semibold uppercase tracking-widest ${i === step ? "text-ink" : "text-ink/60"}`} aria-current={i === step ? "step" : undefined}>{i + 1}. {s}</span>
           </li>
         ))}
       </ol>
@@ -249,7 +249,7 @@ export function AreaMap() {
       <div>
         <label className="block">
           <span className="eyebrow text-brass-2">Check your neighborhood</span>
-          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="e.g. Zilker, Round Rock…" className="mt-4 h-14 w-full rounded-full bg-white/10 px-6 text-lg text-paper outline-none ring-1 ring-white/15 placeholder:text-bone/40 focus:ring-2 focus:ring-brass" />
+          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="e.g. Zilker, Round Rock…" className="mt-4 h-14 w-full rounded-full bg-white/10 px-6 text-lg text-paper outline-none ring-1 ring-white/15 placeholder:text-bone/60 focus:ring-2 focus:ring-brass" />
         </label>
         <p className="mt-4 min-h-[1.5rem] text-bone/75" aria-live="polite">
           {q.trim().length > 1 ? (match >= 0 ? <>Yes! We cover <b className="text-aqua">{areas[match].name}</b>. Typical emergency arrival: <b className="text-paper">{areas[match].eta}</b>.</> : "Not on our list yet, but call us. We often travel further for planned work.") : "12 neighborhoods, 9 trucks on the road."}

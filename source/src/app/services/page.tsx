@@ -19,14 +19,14 @@ export default function Services() {
             <Tilt key={s.slug} max={5} className="mx-rise mx-on-view rounded-blob" style={{ "--i": i % 3 } as CSSProperties}>
               <Link href={`/services/${s.slug}/`} className="group flex h-full flex-col overflow-hidden rounded-blob bg-bone">
                 <div className="relative aspect-[4/3] overflow-hidden">
-                  <Photo k={s.img} alt="" sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" className="transition-transform duration-[1.2s] [transition-timing-function:var(--ease-expo)] group-hover:scale-110" />
+                  <Photo k={s.img} alt="" priority={i === 0} preloadMedia="" sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" className="transition-transform duration-[1.2s] [transition-timing-function:var(--ease-expo)] group-hover:scale-110" />
                   <span className="pop absolute left-4 top-4 rounded-full bg-ink/80 px-3 py-1 text-xs font-bold text-brass-2 backdrop-blur">{s.tag}</span>
                 </div>
                 <div className="flex flex-1 flex-col p-7">
                   <h2 className="font-display text-3xl font-bold tracking-tight">{s.name}</h2>
                   <p className="mt-3 flex-1 text-ink/65">{s.short}</p>
                   <div className="mt-7 flex items-center justify-between border-t border-ink/10 pt-5">
-                    <span className="text-sm"><span className="text-ink/50">From </span><b className="font-display text-xl">{s.from}</b></span>
+                    <span className="text-sm"><span className="text-ink/70">From </span><b className="font-display text-xl">{s.from}</b></span>
                     <span className="grid h-11 w-11 place-items-center rounded-full bg-ink text-brass transition-transform duration-500 group-hover:-rotate-45" aria-hidden="true">→</span>
                   </div>
                 </div>
