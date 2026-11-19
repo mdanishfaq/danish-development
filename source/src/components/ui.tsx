@@ -106,7 +106,7 @@ export function PageHero({ eyebrow, title, accent, lede, photo, art, crumbs, chi
         </div>
         {(photo || art) && (
           <div className="relative aspect-[16/10] max-h-[34rem] w-full overflow-hidden rounded-blob lg:aspect-[4/5] lg:justify-self-end" style={{ animation: "mx-mask-up 1.2s var(--ease-dramatic) .2s both" }}>
-            {photo ? <Photo k={photo} alt="" sizes="(min-width:1024px) 40vw, 100vw" priority /> : <Art k={art!} alt="" sizes="(min-width:1024px) 40vw, 100vw" priority />}
+            {photo ? <Photo k={photo} alt="" sizes="(min-width:1024px) 40vw, 70vw" priority /> : <Art k={art!} alt="" sizes="(min-width:1024px) 40vw, 70vw" priority />}
             <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent" />
           </div>
         )}

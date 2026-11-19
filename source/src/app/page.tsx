@@ -109,7 +109,7 @@ export default function Home() {
         <div className="mx-auto grid max-w-[88rem] gap-14 px-5 md:px-10 lg:grid-cols-2 lg:items-center">
           <div>
             <p className="mx-blur-up mx-on-view inline-flex items-center gap-2 rounded-full bg-signal px-4 py-1.5 text-xs font-bold uppercase tracking-widest"><span className="live-dot !bg-white" aria-hidden="true" /> Emergency line open</p>
-            <p aria-hidden="true" className="font-display mx-blur-up mx-on-view mt-8 text-[clamp(5rem,16vw,13rem)] font-extrabold leading-[.8] tracking-[-0.06em] text-signal">2:14<span className="text-paper/30">am</span></p>
+            <p aria-hidden="true" className="font-display mx-blur-up mx-on-view mt-8 text-[clamp(5rem,16vw,13rem)] font-extrabold leading-[.8] tracking-[-0.06em] text-signal-2">2:14<span className="text-paper/30">am</span></p>
             <h2 className="h-lg mx-blur-up mx-on-view mt-6 max-w-lg">Burst pipe at 2am? You&apos;ll talk to a human by 2:15.</h2>
           </div>
           <ol className="space-y-4">

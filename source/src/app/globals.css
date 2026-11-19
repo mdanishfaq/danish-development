@@ -12,7 +12,8 @@
   --color-aqua-2: #b6fff7;
   --color-bone: #f3eee4;
   --color-paper: #fbf8f2;
-  --color-signal: #ff5a36;
+  --color-signal: #d4381a;
+  --color-signal-2: #ff5a36;
   --color-mute: #8a97a8;
   --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
@@ -52,10 +53,10 @@ html.lenis, html.lenis body { height: auto; }
 .btn-ghost { box-shadow: inset 0 0 0 1.5px currentColor; }
 .btn-ghost::before { background: currentColor; opacity: .12; }
 .btn-sos { background: var(--color-signal); color: white; }
-.btn-sos::before { background: #ff7a5c; }
+.btn-sos::before { background: #b52d12; }
 .btn .arrow { display: inline-grid; place-items: center; width: 1.6rem; height: 1.6rem; border-radius: 99px; background: currentColor; transition: transform 450ms var(--ease-expo); }
 .btn .arrow svg path { stroke: var(--arrow-ink, #07111f); }
-.btn-brass { --arrow-ink: #e2a33b; } .btn-ink { --arrow-ink: #07111f; } .btn-sos { --arrow-ink: #ff5a36; } .btn-ghost { --arrow-ink: #07111f; }
+.btn-brass { --arrow-ink: #e2a33b; } .btn-ink { --arrow-ink: #07111f; } .btn-sos { --arrow-ink: #d4381a; } .btn-ghost { --arrow-ink: #07111f; }
 .btn:hover .arrow { transform: rotate(-45deg); }
 
 /* Live dot */

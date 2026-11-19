@@ -57,9 +57,9 @@ export const IMG = {
 } as const;
 export type ImgKey = keyof typeof IMG;
 
-export const img = (k: ImgKey, w = 1200) =>
-  `https://images.unsplash.com/photo-${IMG[k]}?auto=format&fit=crop&w=${w}&q=72`;
-export const srcSet = (k: ImgKey) => [480, 800, 1200, 1800].map((w) => `${img(k, w)} ${w}w`).join(", ");
+export const img = (k: ImgKey, w = 1200, q = 66) =>
+  `https://images.unsplash.com/photo-${IMG[k]}?auto=format&fit=crop&w=${w}&q=${q}`;
+export const srcSet = (k: ImgKey) => [480, 640, 960, 1400, 1800].map((w) => `${img(k, w)} ${w}w`).join(", ");
 
 export type Service = {
   slug: string; name: string; short: string; tag: string; from: string; time: string;
