@@ -63,7 +63,7 @@ html.lenis, html.lenis body { height: auto; }
 @keyframes stop-in { from { transform: translateY(40px) scale(.94) rotate(-1.5deg); } }
 
 /* Hero words */
-@keyframes hero-word { from { transform: translateY(.4em) rotate(4deg); filter: blur(4px); } }
+@keyframes hero-word { from { transform: translateY(.4em) rotate(4deg); } }
 .hero-words > span { display: inline-block; animation: hero-word 900ms var(--ease-out) both; animation-delay: calc(var(--i, 0) * 60ms); }
 
 /* Page transitions: a bubbly circle reveal */

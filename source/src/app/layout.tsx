@@ -10,7 +10,7 @@ import { brand, SITE_URL, services, BASE } from "@/lib/site";
 
 const display = localFont({
   src: "../../node_modules/@fontsource-variable/fredoka/files/fredoka-latin-wght-normal.woff2",
-  variable: "--font-fredoka", display: "swap", weight: "300 700",
+  variable: "--font-fredoka", display: "optional", weight: "300 700",
 });
 const sans = localFont({
   src: "../../node_modules/@fontsource-variable/instrument-sans/files/instrument-sans-latin-wght-normal.woff2",
